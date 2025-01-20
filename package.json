@@ -4,5 +4,24 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "nodemailer": "^6.9.16"
-  }
+  },
+  "name": "worldwide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sendmail.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/068brian/Worldwide.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/068brian/Worldwide/issues"
+  },
+  "homepage": "https://github.com/068brian/Worldwide#readme"
 }
