@@ -42,7 +42,7 @@ app.post("/send-email", async (req, res) => {
 
     const mailOptions = {
       from: `"Yarraman Contact Form" <${email}>`,
-      to: "whitneydeng9@gmail.com", // Replace with your email
+      to: "yarramanlogistics@gmail.com", // Replace with your email
       subject: "New Contact Form Submission",
       text: `Name: ${name}\nEmail: ${email}\nCar: ${car}\nMessage:\n${message}`,
     };
