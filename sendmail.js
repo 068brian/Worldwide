@@ -1,3 +1,4 @@
+
 // Install nodemailer before using this script: npm install nodemailer
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -5,7 +6,7 @@ const cors = require("cors");
 const nodemailer = require("nodemailer");
 
 const app = express();
-const PORT = 5000; // Changed port to 5000
+const PORT = 3000;
 
 // Enable CORS
 app.use(cors());
