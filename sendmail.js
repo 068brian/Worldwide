@@ -1,3 +1,4 @@
+// Install nodemailer before using this script: npm install nodemailer
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -23,24 +24,31 @@ app.post("/send-email", async (req, res) => {
       return res.status(400).send("All fields are required.");
     }
 
+    // Email regex validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).send("Invalid email format.");
+    }
+
     // Configure nodemailer
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "yarramanlogistics@gmail.com", // Your email
-        pass: "njrq uhoe zpyx anpk", // Your app password
+        user: "whitneydeng9@gmail.com", // Replace with your email
+        pass: "krrt sdfs vxce gmvk", // Replace with your email password or app password
       },
     });
 
     const mailOptions = {
-      from: `"Yarraman Contact Form" <${email}>`,
-      to: "yarramanlogistics@gmail.com", // Your email
+      from: `"Runswell Contact Form" <${email}>`,
+      to: "whitneydeng9@gmail.com", // Replace with your email
       subject: "New Contact Form Submission",
-      text: `Name: ${name}\nEmail: ${email}\nLocation: ${car}\nMessage:\n${message}`,
+      text: `Name: ${name}\nEmail: ${email}\nCar: ${car}\nMessage:\n${message}`,
     };
 
     // Send email
     await transporter.sendMail(mailOptions);
+
     res.status(200).send("Thank you! Your message has been sent.");
   } catch (error) {
     console.error("Error sending email:", error.message);
