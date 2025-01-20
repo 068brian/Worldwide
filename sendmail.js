@@ -31,14 +31,14 @@ app.post("/send-email", async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "your-email@gmail.com", // Replace with your Gmail
-        pass: "your-app-password", // Replace with your App Password
+        user: "yarramanlogistics@gmail.com", // Replace with your Gmail
+        pass: "njrq uhoe zpyx anpk", // Replace with your App Password
       },
     });
 
     const mailOptions = {
       from: `"Runswell Contact Form" <${email}>`,
-      to: "your-email@gmail.com", // Replace with your Gmail
+      to: "yarramanlogistics@gmail.com", // Replace with your Gmail
       subject: "New Contact Form Submission",
       text: `Name: ${name}\nEmail: ${email}\nCar Registration: ${car}\nMessage: ${message}`,
     };
