@@ -36,7 +36,7 @@ app.post("/send-email", async (req, res) => {
       service: "gmail",
       auth: {
         user: "yarramanlogistics@gmail.com", // Replace with your email
-        pass: "njrq uhoe zpyx anpx", // Replace with your email password or app password
+        pass: "njrq uhoe zpyx anpk", // Replace with your email password or app password
       },
     });
 
