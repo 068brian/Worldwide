@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Runswell Automotive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-gray-800 text-white py-4">
+    <div class="container mx-auto flex justify-between items-center px-4">
+      <a href="index.html" class="text-2xl font-bold">Runswell Automotive</a>
+      <button id="menu-toggle" class="block md:hidden px-2 py-1 border rounded text-white border-white">Menu</button>
+      <div id="menu" class="hidden md:flex flex-col md:flex-row">
+        <a href="index.html" class="px-4 py-2 hover:text-gray-300">Home</a>
+        <a href="contact.html" class="px-4 py-2 hover:text-gray-300">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Form -->
+  <div class="container mx-auto my-10 px-4">
+    <header class="text-center mb-10">
+      <h1 class="text-4xl font-bold text-gray-800">Contact Us</h1>
+      <p class="text-lg text-gray-600 mt-2">We'd love to hear from you!</p>
+    </header>
+
+    <form id="contact-form" class="bg-white shadow-md rounded-md p-6 max-w-lg mx-auto">
+      <div class="mb-4">
+        <label for="name" class="block text-gray-800 font-medium">Name</label>
+        <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-md p-2" required>
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-gray-800 font-medium">Email</label>
+        <input type="email" id="email" name="email" class="w-full border border-gray-300 rounded-md p-2" required>
+      </div>
+      <div class="mb-4">
+        <label for="car" class="block text-gray-800 font-medium">Car Registration</label>
+        <input type="text" id="car" name="car" class="w-full border border-gray-300 rounded-md p-2" required>
+      </div>
+      <div class="mb-4">
+        <label for="message" class="block text-gray-800 font-medium">Message/Query</label>
+        <textarea id="message" name="message" class="w-full border border-gray-300 rounded-md p-2" rows="5" required></textarea>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>Contact us at: <a href="mailto:runswellautomotive@gmail.com" class="underline">runswellautomotive@gmail.com</a></p>
+      <p>Phone: 0451 532 348</p>
+    </div>
+  </footer>
+
+  <script>
+    // Contact Form Submission
+    document.getElementById("contact-form").addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const car = document.getElementById("car").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      // Validate form inputs
+      if (!name || !email || !car || !message) {
+        alert("All fields are required.");
+        return;
+      }
+
+      // Email regex validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:5000/send-email", { // Updated to port 5000
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, car, message }),
+        });
+
+        const result = await response.text();
+        if (response.ok) {
+          alert(result);
+          document.getElementById("contact-form").reset();
+        } else {
+          alert("Error: " + result);
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Oops! Something went wrong. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
